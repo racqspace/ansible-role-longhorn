@@ -21,44 +21,49 @@
     api_version: v1
     kind: Namespace
     state: present
+  run_once: true
   tags:
     - longhorn
     - longhorn.namespace
 
-- name: Create temporary file for longhorn manifest
-  ansible.builtin.tempfile:
-    state: file
-    suffix: longhorn
-  register: longhorn_manifest_tempfile
-  tags:
-    - longhorn
-    - longhorn.manifest
-    - longhorn.manifest.tempdir
-
-- name: Download longhorn manifest
-  ansible.builtin.get_url:
-    url: "https://raw.githubusercontent.com/longhorn/longhorn/{{ longhorn_release }}/deploy/longhorn.yaml"   # yamllint disable-line rule:line-length
-    dest: "{{ longhorn_manifest_tempfile.path }}"
-    mode: '0664'
-  tags:
-    - longhorn
-    - longhorn.manifest
-    - longhorn.manifest.download
-
 - name: Install Longhorn
-  kubernetes.core.k8s:
-    state: present
-    src: "{{ longhorn_manifest_tempfile.path }}"
-    namespace: "{{ longhorn_namespace }}"
-  tags:
-    - longhorn
-    - longhorn.manifest
-    - longhorn.manifest.install
+  block:
+    - name: Create temporary file for longhorn manifest
+      ansible.builtin.tempfile:
+        state: file
+        suffix: longhorn
+      register: longhorn_manifest_tempfile
+      tags:
+        - longhorn
+        - longhorn.manifest
+        - longhorn.manifest.tempdir
+
+    - name: Download longhorn manifest
+      ansible.builtin.get_url:
+        url: "https://raw.githubusercontent.com/longhorn/longhorn/{{ longhorn_release }}/deploy/longhorn.yaml"   # yamllint disable-line rule:line-length
+        dest: "{{ longhorn_manifest_tempfile.path }}"
+        mode: '0664'
+      tags:
+        - longhorn
+        - longhorn.manifest
+        - longhorn.manifest.download
+
+    - name: Install Longhorn
+      kubernetes.core.k8s:
+        state: present
+        src: "{{ longhorn_manifest_tempfile.path }}"
+        namespace: "{{ longhorn_namespace }}"
+      tags:
+        - longhorn
+        - longhorn.manifest
+        - longhorn.manifest.install
+  run_once: true
 
 - name: Add Longhorn storageclass
   kubernetes.core.k8s:
     state: present
     template: longhorn-storageclass.yml.j2
+  run_once: true
   tags:
     - longhorn
     - longhorn.storageclass
