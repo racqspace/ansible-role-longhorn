@@ -24,17 +24,6 @@
     - longhorn
     - longhorn.dependencies
 
-- name: create longhorn namespace
-  kubernetes.core.k8s:
-    name: "{{ longhorn_namespace }}"
-    api_version: v1
-    kind: Namespace
-    state: present
-  run_once: true
-  tags:
-    - longhorn
-    - longhorn.namespace
-
 - name: Install Longhorn
   block:
     - name: Create temporary file for longhorn manifest
@@ -61,7 +50,6 @@
       kubernetes.core.k8s:
         state: present
         src: "{{ longhorn_manifest_tempfile.path }}"
-        namespace: "{{ longhorn_namespace }}"
       tags:
         - longhorn
         - longhorn.manifest
@@ -76,4 +64,15 @@
   tags:
     - longhorn
     - longhorn.storageclass
+
+- name: Add Longhorn Ingress
+  kubernetes.core.k8s:
+    state: present
+    template: longhorn-ingress.yml.j2
+  run_once: true
+  when:
+    - longhorn_ingress | bool
+  tags:
+    - longhorn
+    - longhorn.ingress
 ...

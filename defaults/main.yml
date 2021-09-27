@@ -5,9 +5,8 @@ longhorn_cache_valid_time: 3600
 ## Longhorn release
 longhorn_release: v1.2.0
 
-## longhorn namespace
-longhorn_namespace: longhorn
-
 ## Number of replicas for longhorn storageclass
-longhorn_number_of_replicas: 1
+longhorn_number_of_replicas: 3
+
+longhorn_ingress: true
 ...
