@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: longhorn
+  author: ckaserer
+  namespace: racqspace
+  description: >-
+    Install and configure longhorn - cloud native
+    distributed block storage for Kubernetes.
+  license: MIT
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags:
+    - container
+    - development
+    - devops
+    - k8s
+    - kubernetes
+    - longhorn
+    - system
+dependencies: []
+...
