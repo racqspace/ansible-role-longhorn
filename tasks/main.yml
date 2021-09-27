@@ -1,5 +1,5 @@
 ---
-- name: Install Longhorn Requirements
+- name: Install Longhorn dependencies
   ansible.builtin.apt:
     name:
       - open-iscsi
@@ -8,9 +8,18 @@
       - grep
       - mawk
       - libblkid1
+      - python3-pip
     state: present
     update_cache: true
     cache_valid_time: "{{ longhorn_cache_valid_time }}"
+  tags:
+    - longhorn
+    - longhorn.dependencies
+
+- name: Install ansible dependencies
+  ansible.builtin.pip:
+    name:
+      - kubernetes
   tags:
     - longhorn
     - longhorn.dependencies
