@@ -37,7 +37,7 @@
     chart_ref: longhorn/longhorn
     release_namespace: longhorn-system
     create_namespace: true
-    update_repo_cache : true
+    update_repo_cache: true
 
 # - name: Add Longhorn Ingress
 #   kubernetes.core.k8s:
