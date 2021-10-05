@@ -1,5 +1,5 @@
 ---
-- name: Install Longhorn dependencies
+- name: Install äonghorn dependencies
   ansible.builtin.apt:
     name:
       - open-iscsi
@@ -20,6 +20,8 @@
   ansible.builtin.pip:
     name:
       - kubernetes
+      - openshift
+      - pyyaml
   tags:
     - longhorn
     - longhorn.dependencies
