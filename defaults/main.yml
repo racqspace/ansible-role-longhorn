@@ -9,4 +9,5 @@ longhorn_release: v1.2.0
 longhorn_number_of_replicas: 3
 
 longhorn_ingress: true
+longhorn_ingress_host: "myingress"
 ...

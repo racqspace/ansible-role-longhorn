@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+platforms:
+  - name: cluster
+    groups:
+      - k8s
+provisioner:
+  name: ansible
+  lint: |
+    set -e
+    ansible-lint
+  inventory:
+    hosts:
+      longhorn_executor:
+        hosts:
+          longhorn-test-control-plane: {}
+      longhorn_node:
+        hosts:
+          longhorn-test-control-plane: {}
+      all:
+        hosts:
+          localhost:
+            kubeconfig: ${MOLECULE_EPHEMERAL_DIRECTORY}/kubeconfig
+verifier:
+  name: ansible
+  lint: |
+    set -e
+    ansible-lint

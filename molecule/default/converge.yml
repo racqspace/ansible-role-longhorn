@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts:
+    - longhorn_executor
+    - longhorn_node
+  connection: docker
+  gather_facts: false
+  roles:
+    - role: racqspace.longhorn
+...
