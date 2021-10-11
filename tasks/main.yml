@@ -112,6 +112,7 @@
     release_namespace: longhorn-system
     create_namespace: true
     update_repo_cache: true
+    kubeconfig: "~/.kube/config"
     validate_certs: false
   run_once: true
   when:
