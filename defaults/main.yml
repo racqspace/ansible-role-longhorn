@@ -10,6 +10,4 @@ longhorn_number_of_replicas: 3
 
 longhorn_ingress: true
 longhorn_ingress_host: "myingress"
-
-longhorn_validate_certs: true
 ...
