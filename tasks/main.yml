@@ -112,6 +112,7 @@
     release_namespace: longhorn-system
     create_namespace: true
     update_repo_cache: true
+    validate_certs: false
   run_once: true
   when:
     - "'longhorn_executor' in group_names"
