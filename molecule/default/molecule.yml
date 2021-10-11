@@ -17,7 +17,7 @@ provisioner:
       longhorn_executor:
         hosts:
           longhorn-test-control-plane: {}
-      longhorn_node:
+      longhorn_nodes:
         hosts:
           longhorn-test-control-plane: {}
       all:

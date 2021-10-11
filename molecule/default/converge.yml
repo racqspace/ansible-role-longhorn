@@ -2,7 +2,7 @@
 - name: Converge
   hosts:
     - longhorn_executor
-    - longhorn_node
+    - longhorn_nodes
   connection: docker
   gather_facts: false
   roles:

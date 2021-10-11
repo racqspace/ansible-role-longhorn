@@ -88,7 +88,7 @@
     update_cache: true
     cache_valid_time: "{{ longhorn_cache_valid_time }}"
   when:
-    - "'longhorn_node' in group_names"
+    - "'longhorn_nodes' in group_names"
   tags:
     - longhorn
     - longhorn.node
