@@ -12,6 +12,9 @@ provisioner:
   lint: |
     set -e
     ansible-lint
+  config_options:
+    defaults:
+      verbosity: 1
   inventory:
     hosts:
       longhorn_executor:
