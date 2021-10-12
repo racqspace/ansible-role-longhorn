@@ -7,8 +7,6 @@ name: Main
       - main
     tags-ignore:
       - '**'
-  schedule:
-    - cron: '30 8 * * 3'
 
 jobs:
   ansible-linter:
@@ -90,9 +88,6 @@ jobs:
 
       - name: Install Molecule Dependencies
         run: pip install -r requirements.txt
-
-      # - name: Install ansible collections
-      #   run: ansible-galaxy collection install -r requirements.yml
 
       - name: Run Molecule Tests
         run: molecule test --all
