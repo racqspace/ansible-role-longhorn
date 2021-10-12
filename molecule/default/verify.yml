@@ -3,8 +3,6 @@
   hosts: longhorn-test-control-plane
   connection: docker
   gather_facts: false
-  vars:
-    longhorn_ingress_host: myingress
   tasks:
     - name: Check executor dependencies
       ansible.builtin.apt:
