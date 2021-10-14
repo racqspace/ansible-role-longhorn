@@ -112,6 +112,7 @@
     release_namespace: longhorn-system
     create_namespace: true
     update_repo_cache: true
+    values: "{{ longhorn_chart_values | default( {} ) }}"
   run_once: true
   when:
     - "'longhorn_executor' in group_names"

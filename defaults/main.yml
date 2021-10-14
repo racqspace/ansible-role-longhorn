@@ -4,4 +4,14 @@ longhorn_cache_valid_time: 3600
 
 longhorn_ingress: false
 longhorn_ingress_host: "myingress"
+
+# Customize Longhorn chart by setting custom values
+# longhorn_chart_values:
+
+# longhorn values for microk8s
+# longhorn_chart_values:
+#   defaultSettings:
+#     defaultDataPath: "/tmp/longhorn"
+#   csi:
+#     kubeletRootDir: "/var/snap/microk8s/common/var/lib/kubelet"
 ...
