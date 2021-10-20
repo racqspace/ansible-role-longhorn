@@ -79,6 +79,7 @@
   ansible.builtin.apt:
     name:
       - open-iscsi
+      - nfs-common
       - curl
       - util-linux
       - grep
